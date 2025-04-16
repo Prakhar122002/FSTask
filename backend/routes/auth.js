@@ -10,8 +10,21 @@ const JWT_SECRET = 'ernw832@9y4098nf$n';
 
 //Create User Route
 router.post('/createuser', [
-    body('name', 'Enter a valid Name').isLength({min: 3}),
+    body('fname', 'Enter a valid First Name').isLength({min: 3}),
+    body('lname', 'Enter a valid Surname').isLength({min: 3}),
     body('email', 'Enter a valid Email').isEmail(),
+    body('dob', 'Enter a valid Date of Birth').isDate().custom((value) => {
+        const dob = new Date(value);
+        const today = new Date();
+        const ageDiff = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+        const dayDiff = today.getDate() - dob.getDate();
+        let age = ageDiff;
+        if(monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)){ age--; }
+        if(age < 18){ throw new Error("You must be atleast 18 years old to register!"); }
+        return true;
+    }),
+    body('zip', 'Enter a valid Zip Code').isLength(6),
     body('password', 'Password must be atleast 9 characters').isLength({min: 9}),
 ], async (req, res)=>{
     let success = false;

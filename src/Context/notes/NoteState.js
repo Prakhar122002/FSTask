@@ -6,7 +6,7 @@ const NoteState = (props) => {
     // const n1 = []
     const [notes, setNotes] = useState([]);
 
-    //Get all Notez
+    //Get all Notes
     const getNotes = async () => {
       //API Call
       const response = await fetch(`${host}/api/notes/fetchallnotes`, {

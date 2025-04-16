@@ -2,7 +2,12 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
-    name:{
+    fname:{
+        type: String,
+        required: true
+    },
+
+    lname:{
         type: String,
         required: true
     },
@@ -11,6 +16,17 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+
+    dob:{
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+
+    zip:{
+        type: Number,
+        required: true
     },
 
     password:{
@@ -24,7 +40,7 @@ const UserSchema = new Schema({
     }
 });
 
-const User = mongoose.model('user', UserSchema);
+const User = mongoose.model('web_user', UserSchema);
 User.createIndexes();
 
 module.exports = User;
