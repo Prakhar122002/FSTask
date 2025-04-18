@@ -38,7 +38,7 @@ const Login = (props) => {
     <div className="container my-3">
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
+          <label htmlFor="exampleInputEmail1" className="form-label fst-italic">
             Email address
           </label>
           <input
@@ -50,10 +50,14 @@ const Login = (props) => {
             value={user.email}
             onChange={onChange}
             required
+            placeholder="example@email.com"
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
+          <label
+            htmlFor="exampleInputPassword1"
+            className="form-label fst-italic"
+          >
             Password
           </label>
           <input
@@ -65,6 +69,7 @@ const Login = (props) => {
             onChange={onChange}
             required
             minLength={9}
+            placeholder="Password"
           />
         </div>
         <button
